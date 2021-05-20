@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.jorfald.kristianiacalculator.R
 import kotlinx.android.synthetic.main.main_fragment.view.*
+import kotlin.concurrent.fixedRateTimer
 
 class MainFragment : Fragment() {
 
@@ -77,75 +78,78 @@ class MainFragment : Fragment() {
     }
 
     private fun bindButtons() {
-        //TODO: Use viewModel to create correct functions for these buttons
-
         clearButton.setOnClickListener {
-
+            writeText(viewModel.clearValues())
         }
 
         divideButton.setOnClickListener {
-
+            writeText(viewModel.typeExpression("/"))
         }
 
         timesButton.setOnClickListener {
-
+            writeText(viewModel.typeExpression("*"))
         }
 
         minusButton.setOnClickListener {
-
+            writeText(viewModel.typeExpression("-"))
         }
 
         plusButton.setOnClickListener {
-
+            writeText(viewModel.typeExpression("+"))
         }
 
         nineButton.setOnClickListener {
-
+            writeText(viewModel.typeNumber(9))
         }
 
         eightButton.setOnClickListener {
-
+            writeText(viewModel.typeNumber(8))
         }
 
         sevenButton.setOnClickListener {
-
+            writeText(viewModel.typeNumber(7))
         }
 
         sixButton.setOnClickListener {
-
+            writeText(viewModel.typeNumber(6))
         }
 
         fiveButton.setOnClickListener {
-
+            writeText(viewModel.typeNumber(5))
         }
 
         fourButton.setOnClickListener {
-
+            writeText(viewModel.typeNumber(4))
         }
 
         threeButton.setOnClickListener {
-
+            writeText(viewModel.typeNumber(3))
         }
 
         twoButton.setOnClickListener {
-
+            writeText(viewModel.typeNumber(2))
         }
 
         oneButton.setOnClickListener {
-
+            writeText(viewModel.typeNumber(1))
         }
 
         zeroButton.setOnClickListener {
-
+            writeText(viewModel.typeNumber(0))
         }
 
         decimalButton.setOnClickListener {
-
+            writeText(viewModel.typeDecimal())
         }
 
         equalsButton.setOnClickListener {
-            resultTextView.text = viewModel.calculate().toString()
+            writeText(viewModel.calculate())
         }
     }
 
+    private fun writeText(text: String) {
+        if (text.isNotEmpty()) {
+            resultTextView.text = text
+        }
+    }
 }
